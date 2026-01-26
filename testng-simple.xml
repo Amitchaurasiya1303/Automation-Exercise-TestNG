@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Simple E-Commerce Flow">
+
+    <test name="Linear Order Flow">
+        <classes>
+            <class name="SimpleECommerceFlowTest"/>
+        </classes>
+    </test>
+    
+</suite>

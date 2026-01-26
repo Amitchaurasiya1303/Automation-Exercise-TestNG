@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Real-World E-Commerce Flows">
+
+    <test name="Login First Then Shop Flow">
+        <classes>
+            <class name="ECommerceFlowTest"/>
+        </classes>
+    </test>
+    
+    <test name="Shop First Then Login Flow">
+        <classes>
+            <class name="ShopFirstLoginLaterTest"/>
+        </classes>
+    </test>
+    
+</suite>

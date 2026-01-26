@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Quick Test Suite">
+
+    <test name="Quick Cart Test">
+        <classes>
+            <class name="QuickTest"/>
+        </classes>
+    </test>
+    
+</suite>

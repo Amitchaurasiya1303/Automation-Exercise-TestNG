@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Automation Exercise E-Commerce Suite">
+
+    <!-- Real-World E-Commerce Flows -->
+    <test name="E-Commerce User Flows">
+        <classes>
+            <class name="ECommerceFlowTest"/>
+            <class name="ShopFirstLoginLaterTest"/>
+        </classes>
+    </test>
+
+    <!-- Quick Test for Cart Functionality -->
+    <test name="Quick Cart Test">
+        <classes>
+            <class name="QuickTest"/>
+        </classes>
+    </test>
+
+    <!-- Individual Component Tests -->
+    <test name="Component Tests">
+        <classes>
+            <class name="HomeTest"/>
+            <class name="SignUpLoginTest"/>
+            <class name="CreateAccountTest"/>
+            <class name="AccountCreatedTest"/>
+            <class name="ProductTest"/>
+            <class name="ProductDetailTest"/>
+            <class name="CartTest"/>
+            <class name="CheckoutTest"/>
+            <class name="PaymentTest"/>
+            <class name="OrderConfirmationTest"/>
+            <class name="UserLoggedInTest"/>
+        </classes>
+    </test>
+    
+</suite>
