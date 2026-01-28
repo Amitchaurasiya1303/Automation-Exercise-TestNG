@@ -1,13 +1,7 @@
 # E-Commerce Automation Testing Project
 
 ## Overview
-This project automates the complete e-commerce flow on https://automationexercise.com including:
-- User registration and login
-- Product search and selection
-- Add to cart functionality
-- Checkout process
-- Payment processing
-- Order confirmation verification
+Complete end-to-end automation testing for https://automationexercise.com using Selenium WebDriver, TestNG, and Java. Features user registration/login, product search, cart management, checkout flow, payment processing, and order confirmation with comprehensive reporting.
 
 ## Project Structure
 ```
@@ -21,166 +15,189 @@ AutomationFirstAmit/
 │   └── test/
 │       ├── java/                   # Test classes
 │       └── resources/              # Configuration files
+├── test-reports/                   # Extent Reports output
 ├── testng.xml                      # TestNG suite configuration
 ├── pom.xml                         # Maven dependencies
 └── run-tests.bat                   # Test execution script
 ```
 
-## Key Features Fixed/Added
+## Key Features
 
-### 🔧 Fixed Issues:
-1. **Search Box Location**: Updated locators with more robust selectors
-2. **Product Search**: Improved search functionality with better error handling
-3. **View Product**: Fixed "View Product" button clicking with fallback mechanisms
-4. **Data Passing**: Enhanced data flow between test methods
+### 🔧 Core Functionality:
+- **Smart User Authentication**: Handles both new user registration and existing user login
+- **Seamless Cart Navigation**: Direct cart navigation without home page loops
+- **Robust Product Search**: Enhanced search with error handling and retry mechanisms
+- **Complete Checkout Flow**: End-to-end order placement with payment processing
+- **Order Confirmation**: Comprehensive success verification
 
-### 🆕 New Features Added:
-1. **ProductDetailPage**: Handles add to cart functionality
-2. **CartPage**: Manages cart operations and checkout navigation
-3. **CheckoutPage**: Handles order review and placement
-4. **PaymentPage**: Processes payment information
-5. **OrderConfirmationPage**: Verifies successful order completion
-6. **Complete E2E Test**: Full end-to-end e-commerce flow test
+### 🆕 Advanced Features:
+- **Extent Reports**: Beautiful HTML reports with step-by-step execution
+- **Page Object Model**: Clean, maintainable code architecture
+- **Data-Driven Testing**: Configurable test data for users, products, and payments
+- **Multiple Test Scenarios**: Various user journey flows
+- **Auto Browser Cleanup**: Proper session management
+
+## Test Data
+
+### User Information:
+- **Name**: Amit Chaurasiya
+- **Email**: amit798dps6@test.com
+- **Password**: Test@123
+- **Address**: Mumbai Street 1, Mumbai, Maharashtra, India, 400001
+- **Phone**: 9876543210
+
+### Product Data:
+- **Product**: Blue Top
+- **Category**: Women > Tops
+- **Brand**: Polo
+- **Price**: ₹500
+
+### Payment Details:
+- **Card Holder**: Amit Chaurasiya
+- **Card Number**: 4242424242424242
+- **CVC**: 123
+- **Expiry**: 12/2027
 
 ## Test Classes
 
-### Component Tests:
-- `HomeTest`: Home page functionality
-- `SignUpLoginTest`: User authentication
-- `CreateAccountTest`: Account creation
-- `ProductTest`: Product search and viewing
-- `CartTest`: Cart operations
-- `PaymentTest`: Payment processing
+### Main Test Flows:
+- `SimpleECommerceFlowTest`: Linear flow with automatic logout and browser closure
+- `ECommerceFlowTest`: Complete user journey from registration to order confirmation
+- `ShopFirstLoginLaterTest`: Anonymous shopping with login during checkout
 
-### End-to-End Tests:
-- `ECommerceFlowTest`: Complete purchase flow from registration to order confirmation
+### Component Tests:
+- `HomeTest`, `SignUpLoginTest`, `CreateAccountTest`
+- `ProductTest`, `CartTest`, `CheckoutTest`, `PaymentTest`
+- `OrderConfirmationTest`, `UserLoggedInTest`
 
 ## How to Run Tests
 
 ### Prerequisites:
-1. Java 22 installed
-2. Maven installed
-3. Chrome browser installed
-4. VS Code with Java extensions
+- Java 11 or higher
+- Maven 3.6+
+- Chrome browser
+- VS Code with Java extensions (optional)
 
-### Running Tests:
+### Execution Options:
 
-#### Option 1: Using the batch script (Recommended)
+#### Option 1: Using Batch Script (Recommended)
 ```bash
-# Double-click run-tests.bat or run in terminal:
 run-tests.bat
+# Select option 1: Simple Linear Flow (No Loops)
 ```
 
-#### Option 2: Using Maven commands
+#### Option 2: Maven Commands
 ```bash
-# Compile the project
+# Compile project
 mvn clean compile test-compile
 
-# Run all tests
-mvn test
+# Run simple linear flow
+mvn test -DsuiteXmlFile=testng-simple.xml
 
-# Run specific test suite
-mvn test -DsuiteXmlFile=testng.xml
+# Run specific test
+mvn test -Dtest=SimpleECommerceFlowTest
 ```
 
-#### Option 3: Using VS Code
-1. Open the project in VS Code
-2. Navigate to any test class
-3. Click the "Run Test" button above test methods
-4. Or right-click on testng.xml and select "Run Tests"
+#### Option 3: VS Code Integration
+1. Open project in VS Code
+2. Navigate to test classes
+3. Click "Run Test" button
+4. Or use Command Palette: "Java: Run Tests"
 
-## Test Data
+## Test Execution Flow
 
-### Product Data:
-- Product Name: "Blue Top"
-- Category: Women > Tops
-- Brand: Polo
-- Price: 500
+### Simple Linear Flow (Recommended):
+```
+🏠 Home → 🔐 Login → 🛍️ Search → 🛒 Add to Cart → 💳 Checkout → ✅ Order Success → 🔓 Logout → ❌ Close
+```
 
-### User Data:
-- Name: Amit Chaurasiya
-- Email: amit798dss6@test.com (auto-generated)
-- Password: Test@123
-- Address: Mumbai, Maharashtra, India
+### Key Benefits:
+- ✅ No infinite loops or home page redirects
+- ✅ Direct cart navigation after adding products
+- ✅ Smart user authentication (signup/login handling)
+- ✅ Automatic browser cleanup after order completion
+- ✅ Comprehensive success verification
 
-### Payment Data:
-- Card Name: John Doe
-- Card Number: 4242424242424242
-- CVC: 123
-- Expiry: 12/2025
+## Reports
+
+### Extent Reports:
+- **Location**: `test-reports/ExtentReport_[timestamp].html`
+- **Features**: Step-by-step execution, screenshots, detailed logging
+- **Phases**: Authentication → Shopping → Checkout → Payment → Confirmation
+
+### Maven Reports:
+- **Location**: `target/surefire-reports/`
+- **Format**: XML and TXT reports for CI/CD integration
 
 ## Configuration
 
 ### Browser Settings:
-- Default: Chrome
-- Configurable via `config.properties`
+- **Default**: Chrome
+- **Configurable**: Via `config.properties`
 
-### URLs:
-All URLs are configured in `src/test/resources/config.properties`
-
-## Test Reports
-
-After running tests, reports are available in:
-- `target/surefire-reports/` - Maven Surefire reports
-- Console output with detailed step-by-step execution logs
+### Test Data:
+- **Location**: `DataContainer.java`
+- **Customizable**: User, Product, and Payment information
 
 ## Troubleshooting
 
 ### Common Issues:
 
-1. **Search box not found**:
-   - Ensure internet connection is stable
-   - Check if website is accessible
-   - Verify Chrome browser is updated
+1. **Compilation Errors**:
+   ```bash
+   mvn clean compile test-compile
+   ```
 
-2. **Element not clickable**:
-   - Tests include wait conditions and retry mechanisms
-   - JavaScript click fallbacks are implemented
+2. **Browser Issues**:
+   - Ensure Chrome is updated
+   - Check internet connectivity
+   - Verify website accessibility
 
-3. **Test data issues**:
-   - Email addresses are auto-generated to avoid conflicts
-   - Payment uses test card numbers
+3. **Test Failures**:
+   - Check console output for detailed error messages
+   - Review Extent Reports for step-by-step execution
+   - Verify test data in DataContainer.java
 
-### Debug Mode:
-Enable detailed logging by checking console output during test execution.
+## VS Code Setup
 
-## VS Code Integration
+### Required Extensions:
+- Extension Pack for Java
+- TestNG for Java
+- Maven for Java
 
-### Running Tests in VS Code:
-1. Install "Extension Pack for Java"
-2. Install "TestNG for Java"
-3. Open Command Palette (Ctrl+Shift+P)
-4. Type "Java: Run Tests" or use the test runner in the sidebar
-
-### Debugging:
-1. Set breakpoints in test methods
-2. Right-click and select "Debug Test"
-3. Use VS Code's debugging features to step through code
+### Running Tests:
+1. Open Command Palette (`Ctrl+Shift+P`)
+2. Select "Java: Run Tests"
+3. Choose specific test or test suite
+4. View results in Test Explorer
 
 ## Success Criteria
 
 The automation verifies:
-✅ User can register successfully
-✅ Product search works correctly  
-✅ Product can be viewed and added to cart
-✅ Cart contains the added product
-✅ Checkout process completes
-✅ Payment information is processed
-✅ Order confirmation is displayed
-✅ Success message contains "Congratulations"
+✅ User registration/login functionality
+✅ Product search and selection
+✅ Cart management and navigation
+✅ Checkout process completion
+✅ Payment processing
+✅ Order confirmation with success message
+✅ Proper session cleanup
 
-## Notes
+## Technical Stack
 
-- Tests are designed to run independently
-- Each test includes proper setup and cleanup
-- Robust error handling and retry mechanisms
-- Detailed logging for debugging
-- Cross-browser compatible (Chrome default)
+- **Language**: Java 11
+- **Framework**: Selenium WebDriver 4.40.0
+- **Testing**: TestNG 7.12.0
+- **Reporting**: Extent Reports 5.1.1
+- **Build Tool**: Maven
+- **Architecture**: Page Object Model
+- **IDE**: VS Code / IntelliJ IDEA
 
-## Support
+## Author
 
-For issues or questions:
-1. Check console output for detailed error messages
-2. Verify all dependencies are installed correctly
-3. Ensure website accessibility
-4. Review test data in DataContainer.java
+**Amit Chaurasiya**
+- GitHub: [Amitchaurasiya1303](https://github.com/Amitchaurasiya1303)
+- Project: Automation Exercise TestNG
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

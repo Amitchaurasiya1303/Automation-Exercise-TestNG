@@ -11,8 +11,13 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 
+/**
+ * Complete E-Commerce flow test - Login → Shop → Cart → Checkout → Payment → Success
+ * Author: Amit Chaurasiya
+ */
 public class ECommerceFlowTest extends BaseTest {
     
+    // Page objects
     private HomePage homePage;
     private SignUpLogInPage signUpLogInPage;
     private CreateAccountPage createAccountPage;
@@ -62,21 +67,17 @@ public class ECommerceFlowTest extends BaseTest {
         ExtentReportManager.createTest("Real-World E-Commerce Flow", "Complete user journey from registration to order confirmation");
         
         try {
-            // PHASE 1: USER AUTHENTICATION
+            // Phase 1: User Authentication
             ExtentReportManager.logInfo("=== PHASE 1: USER AUTHENTICATION ===");
             
-            // Step 1: Go to Login/Signup page first (like real users do)
-            ExtentReportManager.logInfo("Step 1: Navigating to Login/Signup page");
             homePage.navigateByBtn();
             verifyTitle(PropertiesUtil.getProperty("login_signup_title"));
             ExtentReportManager.logPass("Successfully navigated to Login/Signup page");
             
-            // Step 2: Try to signup, handle existing user scenario
-            ExtentReportManager.logInfo("Step 2: Attempting user registration/login");
             boolean userAuthenticated = signUpLogInPage.signUp(user);
             
             if (userAuthenticated && driver.getCurrentUrl().contains("signup")) {
-                // New user - complete registration process
+                // New user registration
                 ExtentReportManager.logInfo("New user detected - completing registration");
                 verifyTitle(PropertiesUtil.getProperty("create_account_title"));
                 createAccountPage.enterAccountInformation(user);
@@ -86,63 +87,54 @@ public class ECommerceFlowTest extends BaseTest {
                 accountCreatedPage.continueForMore();
                 ExtentReportManager.logPass("New user account created and logged in successfully");
             } else if (userAuthenticated) {
-                // Existing user logged in successfully
                 ExtentReportManager.logPass("Existing user logged in successfully");
             } else {
                 ExtentReportManager.logFail("User authentication failed");
                 Assert.fail("User authentication failed - cannot proceed");
             }
             
-            // PHASE 2: PRODUCT SHOPPING
+            // Phase 2: Product Shopping
             ExtentReportManager.logInfo("=== PHASE 2: PRODUCT SHOPPING ===");
             
-            // Step 3: Navigate to products and search
-            ExtentReportManager.logInfo("Step 3: Searching for product: " + product.getProductName());
+            ExtentReportManager.logInfo("Searching for product: " + product.getProductName());
             productPage.searchProductByName(product);
             productPage.getProductResult(product);
             productPage.viewProduct();
             ExtentReportManager.logPass("Product found and product details page opened");
             
-            // Step 4: Add product to cart (critical step)
-            ExtentReportManager.logInfo("Step 4: Adding product to cart");
+            ExtentReportManager.logInfo("Adding product to cart");
             productDetailPage.addToCart();
-            Thread.sleep(2000); // Wait for modal to appear
+            Thread.sleep(2000);
             ExtentReportManager.logPass("Product successfully added to cart");
             
-            // Step 5: Navigate to cart (NO going back to home/products)
-            ExtentReportManager.logInfo("Step 5: Going directly to cart page");
+            ExtentReportManager.logInfo("Going directly to cart page");
             productDetailPage.goToCart();
             
-            // Verify we're on cart page and cart has items
             Assert.assertTrue(cartPage.isCartPageLoaded(), "Cart page should be loaded");
             Assert.assertTrue(cartPage.hasItems(), "Cart should contain the added product");
             ExtentReportManager.logPass("Successfully navigated to cart page with product");
             
-            // PHASE 3: CHECKOUT PROCESS
+            // Phase 3: Checkout Process
             ExtentReportManager.logInfo("=== PHASE 3: CHECKOUT PROCESS ===");
             
-            // Step 6: Proceed to checkout (user is already logged in)
-            ExtentReportManager.logInfo("Step 6: Proceeding to checkout");
+            ExtentReportManager.logInfo("Proceeding to checkout");
             cartPage.proceedToCheckout();
             ExtentReportManager.logPass("Successfully proceeded to checkout page");
             
-            // Step 7: Review order details and place order
-            ExtentReportManager.logInfo("Step 7: Reviewing order and placing order");
+            ExtentReportManager.logInfo("Reviewing order and placing order");
             checkoutPage.addOrderComment("Please handle with care - automated test order");
             checkoutPage.placeOrder();
             ExtentReportManager.logPass("Order placed successfully, proceeding to payment");
             
-            // PHASE 4: PAYMENT AND CONFIRMATION
+            // Phase 4: Payment and Confirmation
             ExtentReportManager.logInfo("=== PHASE 4: PAYMENT AND CONFIRMATION ===");
             
-            // Step 8: Fill payment details and confirm
-            ExtentReportManager.logInfo("Step 8: Processing payment");
+            ExtentReportManager.logInfo("Processing payment");
             paymentPage.fillPaymentDetails(payment);
             paymentPage.payAndConfirmOrder();
             ExtentReportManager.logPass("Payment processed successfully");
             
-            // Step 9: Verify order confirmation
-            ExtentReportManager.logInfo("Step 9: Verifying order confirmation");
+            ExtentReportManager.logInfo("Verifying order confirmation");
             Assert.assertTrue(orderConfirmationPage.isOrderSuccessful(), 
                 "Order confirmation should be displayed");
             
@@ -152,7 +144,6 @@ public class ECommerceFlowTest extends BaseTest {
             
             ExtentReportManager.logPass("ORDER COMPLETED SUCCESSFULLY: " + successMessage);
             
-            // Final success log
             System.out.println("\n" + "=".repeat(60));
             System.out.println("✅ COMPLETE E-COMMERCE FLOW SUCCESSFUL!");
             System.out.println("User: " + user.getName() + " (" + user.getEmail() + ")");
