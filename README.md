@@ -175,13 +175,13 @@ mvn test -Dtest=SimpleECommerceFlowTest
 ## Success Criteria
 
 The automation verifies:
-✅ User registration/login functionality
-✅ Product search and selection
-✅ Cart management and navigation
-✅ Checkout process completion
-✅ Payment processing
-✅ Order confirmation with success message
-✅ Proper session cleanup
+-✅ User registration/login functionality
+-✅ Product search and selection
+-✅ Cart management and navigation
+-✅ Checkout process completion
+-✅ Payment processing
+-✅ Order confirmation with success message
+-✅ Proper session cleanup
 
 ## Technical Stack
 
