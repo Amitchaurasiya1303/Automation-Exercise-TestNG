@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # E-Commerce Automation Testing Project
 
 ## Overview
@@ -113,11 +112,11 @@ mvn test -Dtest=SimpleECommerceFlowTest
 ```
 
 ### Key Benefits:
-- ✅ No infinite loops or home page redirects
-- ✅ Direct cart navigation after adding products
-- ✅ Smart user authentication (signup/login handling)
-- ✅ Automatic browser cleanup after order completion
-- ✅ Comprehensive success verification
+✅ No infinite loops or home page redirects
+✅ Direct cart navigation after adding products
+✅ Smart user authentication (signup/login handling)
+✅ Automatic browser cleanup after order completion
+✅ Comprehensive success verification
 
 ## Reports
 
