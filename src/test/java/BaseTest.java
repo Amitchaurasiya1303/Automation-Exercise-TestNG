@@ -13,6 +13,6 @@ public class BaseTest {
 
     public static void verifyTitle(String expectedTitle){
         String actualTitle = driver.getTitle();
-        Assert.assertEquals(actualTitle,expectedTitle,"❌ Home page title mismatch!");
+        Assert.assertEquals(actualTitle,expectedTitle,"Home page title mismatch!");
     }
 }

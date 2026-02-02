@@ -145,7 +145,7 @@ public class ECommerceFlowTest extends BaseTest {
             ExtentReportManager.logPass("ORDER COMPLETED SUCCESSFULLY: " + successMessage);
             
             System.out.println("\n" + "=".repeat(60));
-            System.out.println("✅ COMPLETE E-COMMERCE FLOW SUCCESSFUL!");
+            System.out.println("COMPLETE E-COMMERCE FLOW SUCCESSFUL!");
             System.out.println("User: " + user.getName() + " (" + user.getEmail() + ")");
             System.out.println("Product: " + product.getProductName());
             System.out.println("Payment: " + payment.getNameOnCard());
@@ -154,7 +154,7 @@ public class ECommerceFlowTest extends BaseTest {
             
         } catch (Exception e) {
             ExtentReportManager.logFail("E-Commerce flow failed: " + e.getMessage());
-            System.out.println("❌ Test failed at: " + e.getMessage());
+            System.out.println("Test failed at: " + e.getMessage());
             throw e;
         }
     }

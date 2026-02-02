@@ -149,7 +149,7 @@ public class ShopFirstLoginLaterTest extends BaseTest {
             ExtentReportManager.logPass("ORDER COMPLETED: " + successMessage);
             
             System.out.println("\\n" + "=".repeat(60));
-            System.out.println("✅ SHOP-FIRST-LOGIN-LATER FLOW SUCCESSFUL!");
+            System.out.println("SHOP-FIRST-LOGIN-LATER FLOW SUCCESSFUL!");
             System.out.println("Flow: Anonymous Shopping → Login at Checkout → Order Complete");
             System.out.println("=" .repeat(60));
             
