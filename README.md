@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # E-Commerce Automation Testing Project
 
 ## Overview
